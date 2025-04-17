@@ -1,0 +1,91 @@
+rails g model Mestre blob:binary
+rails g model Cliente detalhe:string mestre:references
+rails g model Van detalhe:string mestre:references
+rails g model MeioDeCaptura detalhe:string mestre:references
+rails g model IpParceira detalhe:string mestre:references
+rails g model Adquirencia detalhe:string mestre:references
+rails g model UfDestinataria detalhe:string mestre:references
+rails g model Autorizacao detalhe:string mestre:references
+clear
+mkdir -p rcad_files/{original,processados,erros}
+rails g model Mestre   cod_ver_rcad:string   cod_ver:string   cod_fin:integer   uf_fisco:string   cnpj:string   nome:string   dt_ini:date   dt_fin:date   tp_amb:integer   mes_val:string   uf:string   nome_resp:string   fone:string   email:string   nacional_1100:boolean   comex_1100:boolean   nacional_1500:boolean   comex_1500:boolean   sha256:string   blob:binary
+rails d model Mestre blob:binary
+clear
+rails d model Mestre blob:binary
+rails d model Cliente detalhe:string mestre:references
+rails d model Van detalhe:string mestre:references
+rails d model MeioDeCaptura detalhe:string mestre:references
+rails d model IpParceira detalhe:string mestre:references
+rails d model Adquirencia detalhe:string mestre:references
+rails d model UfDestinataria detalhe:string mestre:references
+rails d model Autorizacao detalhe:string mestre:references
+clear
+rails d model Mestre blob:binary
+rails d model Cliente detalhe:string mestre:references
+rails d model Van detalhe:string mestre:references
+rails d model MeioDeCaptura detalhe:string mestre:references
+rails d model IpParceira detalhe:string mestre:references
+rails d model Adquirencia detalhe:string mestre:references
+rails d model UfDestinataria detalhe:string mestre:references
+rails d model Autorizacao detalhe:string mestre:references
+clear
+rails g model Mestre   cod_ver_rcad:string   cod_ver:string   cod_fin:integer   uf_fisco:string   cnpj:string   nome:string   dt_ini:date   dt_fin:date   tp_amb:integer   mes_val:string   uf:string   nome_resp:string   fone:string   email:string   nacional_1100:boolean   comex_1100:boolean   nacional_1500:boolean   comex_1500:boolean   sha256:string   blob:binary
+rails g model Cliente   cnpj:string   cpf:string   dt_credenciamento:date   mestre:references
+clear
+rails g model Van   cnpj:string   nome:string   mestre:references
+clear
+rails g model MeioDeCaptura   tipo_tecn:integer   term_prop:integer   marca:string   mestre:references
+rails g model IpParceira   cnpj:string   nome:string   nome_resp:string   fone:string   email:string   mestre:references
+rails g model Adquirencia   cnpj_adqui:string   mestre:references
+rails g model UfDestinataria   uf:string   qtd:integer   mestre:references
+rails g model Autorizacao   tp_autoriz:integer   cnpj:string   tp_transac:integer   dt_ini_aut:date   dt_fim_aut:date   mestre:references
+rails g model ContadorRegistro   qtd_b:integer   qtd_c:integer   qtd_d:integer   qtd_e:integer   qtd_f:integer   qtd_g:integer   qtd_h:integer   mestre:references
+rails d model adquirencium # para remover o anterior
+rails g model Adquirencia cnpj_adqui:string mestre:references
+rails d model UfDestinatarium # para remover o anterior
+rails g model UfDestinataria uf:string qtd:integer mestre:references
+rails d model UfDestinatarium # para remover o anterior
+rails g model UfDestinataria uf:string qtd:integer mestre:references
+clear
+rails d model adquirencia
+rails g model Adquirencia cnpj_adqui:string mestre:references
+rails d model UfDestinataria # para remover o anterior
+rails g model UfDestinataria uf:string qtd:integer mestre:references
+rails d model uf_destinataria # para remover o anterior
+rails g model uf_destinataria uf:string qtd:integer mestre:references
+rails d model Autorizacao
+clear
+rails d model Autorizacao
+rails d model Autorizacao   tp_autoriz:integer   cnpj:string   tp_transac:integer   dt_ini_aut:date   dt_fim_aut:date   mestre:references
+rails d model Autorizacao
+rm spec/factories/uf_destinatarias.rb
+rails d model Autorizacao
+clear
+rails g model Autorizacao   tp_autoriz:integer   cnpj:string   tp_transac:integer   dt_ini_aut:date   dt_fim_aut:date   mestre:references
+rails db:migrate
+rm spec/factories/autorizacao.rb
+rm spec/factories/autorizacaos.rb
+rails db:migrate
+clear
+rails c
+rails 
+rails db:drop
+rails db:migrate
+rails s
+rails c
+rails db:drop
+rails db:migrate
+rails c
+rails db:drop
+rails db:migrate
+rails c
+rails db:drop
+rails db:migrate
+rails c
+rails db:drop
+rails db:migrate
+rails c
+rails db:drop
+rails db:migrate
+clear
+history >> history.txt
