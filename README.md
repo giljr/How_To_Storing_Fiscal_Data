@@ -187,6 +187,10 @@ Then
     
     Cargas::RcadCarga.new
 
+## 📈 Improvements Inspired by External Review
+
+See detailed [Suggestions for Improvement](./IMPROVEMENT.md), based on a review and best practices analysis.
+
 ✅ Done!
 
 You now have a production-ready Rails 8 app capable of parsing and storing fiscal data from RCAD-formatted files.
