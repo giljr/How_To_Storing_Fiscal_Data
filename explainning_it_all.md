@@ -220,6 +220,26 @@ Origin: Extension of `ActiveRecord::Base`.
 | `send`   | `Object` (core Ruby)                                 | Dynamically call a method by name    | `send(:parse_cliente, row)`                    |
 | `import` | `ActiveRecord::Base` (via `activerecord-import` gem) | Bulk insert many records efficiently | `Cliente.import(clientes, batch_size: 10_000)` |
 
+### Curiosity:
+The difference between `row.chomp` and `row.chomp!` in Ruby is subtle but important 👇
+
+| Expression             | Returns                                       | Modifies original?                    | Typical Use                                               |
+| ---------------------- | --------------------------------------------- | ------------------------------------- | --------------------------------------------------------- |
+| `row_data = row.chomp` | **A new string** with the line ending removed | ❌ **No** — `row` stays unchanged      | When you want to keep the original intact                 |
+| `row.chomp!`           | The **same string**, modified in place        | ✅ **Yes** — `row` is changed directly | When you want to save memory or update the value in place |
+
+__Summary__
+
+`chomp` → safe, returns a new string.
+
+`chomp!` → destructive, modifies the existing string (and returns nil if no change was made).
+
+So, use:
+
+`chomp` when you want immutability and clarity.
+
+`chomp!` when performance or memory efficiency matters.
+
 ### 💬 Final Thoughts
 
 This enhanced implementation is the result of hands-on experience.
