@@ -18,7 +18,7 @@ A well-designed loader should be:
 
 These characteristics took time to refine, but they define a best-practice approach to reliable RCAD data importation.
 
-The enhanced version introduces improvements in structure, safety, and maintainability.  
+The [enhanced](https://www.diffchecker.com/RqsUMfAZ/) version introduces improvements in structure, safety, and maintainability.  
 It also employs **metaprogramming** and a **data-driven architecture**, making it flexible yet disciplined.
 
 ---
