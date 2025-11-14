@@ -107,4 +107,67 @@ tail -f log/development.log
 ⏱ RCAD Middleware Time: 446.44 ms
 ```
 
+Here is a clear explanation of what each line does:
+
+1. Add custom dir to autoload
+```ruby
+config.autoload_paths << Rails.root.join("app/middleware")
+```
+Rails automatically loads classes from certain folders (like `app/models`, `app/controllers`, etc.).
+But `app/middleware` is not autoloaded by default.
+
+This line tells Rails:
+
+“Also look inside app/middleware when searching for classes.”
+
+So Rails can autoload your custom middleware class if needed.
+
+
+2. Load middleware class BEFORE inserting
+```
+require Rails.root.join("app/middleware/my_custom_logger")
+```
+Normally Rails autoloads files lazily, but middleware must be loaded at boot time, before the middleware stack is built.
+
+This require ensures the file is loaded immediately so the `class MyCustomLogger` exists when Rails tries to insert it into the stack.
+
+Without this, Rails may throw:
+```error
+uninitialized constant MyCustomLogger
+```
+
+3. Insert middleware
+```
+config.middleware.insert_before 0, MyCustomLogger
+```
+Rails middleware is a stack.
+insert_before 0 means:
+
+“Put this middleware at the very top (first position) of the stack.”
+
+This makes your MyCustomLogger middleware run before every other middleware.
+
+So your logger will capture:
+
+- the start of the request
+
+- the end of the request
+
+ - the total time
+
+- anything else you add
+
+before any other framework component touches the request.
+
+#### Summary
+
+`autoload_paths`: Tells Rails to look inside app/middleware.
+
+`require`: Ensures the class is loaded early, because middleware cannot be lazy-loaded.
+
+`insert_before 0`: Adds your custom middleware as the first middleware in the chain.
+
+---
+
+
                                   ⋆.˚✮𝕋𝕙𝕒𝕟𝕜 𝕪𝕠𝕦✮˚.⋆
