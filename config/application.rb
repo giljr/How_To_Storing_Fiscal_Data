@@ -12,5 +12,15 @@ module RcadApp
       processados: Rails.root.join("rcad_files/processados"),
       erros:       Rails.root.join("rcad_files/erros")
     }
+
+    # Add custom dir to autoload
+    config.autoload_paths << Rails.root.join("app/middleware")
+
+    # Load middleware class BEFORE inserting
+    require Rails.root.join("app/middleware/my_custom_logger")
+
+    # Insert middleware
+    config.middleware.insert_before 0, MyCustomLogger
+
   end
 end

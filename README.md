@@ -2,6 +2,16 @@
 
 ### _From Project Setup to Service Execution — A Step-by-Step Guide Using Ruby 3.3+, Transaction, FileUtils and Clean Architecture_
 
+🆕 Nov 2025 — Added a custom `MyCustomLogger` middleware
+Introduced a new middleware located in `app/middleware/` and inserted it properly into the Rails stack. This component powers a metrics dashboard that measures the elapsed time between when an API command is received and when the final file is delivered. 
+
+🎊 You should see in Terminal:
+
+```ruby
+⏱ RCAD Middleware Time: 446.44 ms
+```
+
+#### For details read [How to create a custom middleware](docs/middleware.md).
 ---
 
 ## 📘 About the Project
